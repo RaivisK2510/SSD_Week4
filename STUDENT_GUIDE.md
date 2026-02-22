@@ -25,7 +25,7 @@ npm install
 ### 3. ⚙️ Configure Environment
 
 ```bash
-cp .env.example .env
+cp .env .env
 php artisan key:generate
 ```
 

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,12 +26,27 @@ Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
 // Blog routes
 Route::resource('posts', PostController::class);
 
-Auth::routes();
+// Categories CRUD
+Route::resource('categories', CategoryController::class);
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+// Extra pages
+Route::get('/about', [PageController::class, 'about'])->name('pages.about');
+Route::get('/contact', [PageController::class, 'contact'])->name('pages.contact');
 
+// Auth (explicit routes to avoid 404s)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login']);
 
+    Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'register']);
+});
 
-Auth::routes();
+Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// If you still have this, consider removing it to prevent duplicate-route confusion:
+// Auth::routes();
+
+Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');

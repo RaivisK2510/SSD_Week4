@@ -62,7 +62,7 @@ npm install
 Copy the example environment file and configure it:
 
 ```bash
-cp .env.example .env
+cp .env .env
 ```
 
 Edit the `.env` file and configure your database settings:

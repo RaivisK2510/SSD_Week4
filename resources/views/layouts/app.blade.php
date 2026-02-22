@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -39,6 +39,15 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('blog.*') || request()->routeIs('posts.*') ? 'active' : '' }}" href="{{ route('blog.index') }}">Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}" href="{{ route('categories.index') }}">Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('pages.about') ? 'active' : '' }}" href="{{ route('pages.about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('pages.contact') ? 'active' : '' }}" href="{{ route('pages.contact') }}">Contact</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -63,6 +72,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -97,11 +107,16 @@
                         <ul class="list-unstyled">
                             <li class="mb-2"><a href="{{ route('home') }}" class="text-muted text-decoration-none">Home</a></li>
                             <li class="mb-2"><a href="{{ route('blog.index') }}" class="text-muted text-decoration-none">Blog</a></li>
+                            <li class="mb-2"><a href="{{ route('categories.index') }}" class="text-muted text-decoration-none">Categories</a></li>
+                            <li class="mb-2"><a href="{{ route('pages.about') }}" class="text-muted text-decoration-none">About</a></li>
+                            <li class="mb-2"><a href="{{ route('pages.contact') }}" class="text-muted text-decoration-none">Contact</a></li>
                             @auth
                                 <li class="mb-2"><a href="{{ route('posts.create') }}" class="text-muted text-decoration-none">Write Post</a></li>
                             @endauth
                         </ul>
                     </div>
+
+                    <!-- ... existing code ... -->
                     <div class="col-md-3 mb-4 mb-md-0">
                         <h6 class="fw-bold mb-3">Resources</h6>
                         <ul class="list-unstyled">
