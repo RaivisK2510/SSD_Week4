@@ -6,11 +6,11 @@
         <div class="col-lg-9">
             <h1 class="mb-3">Contact</h1>
             <p class="lead text-muted">
-                For enquiries, reach out via email: <strong>contact@your-domain.test</strong>
+                For enquiries, reach out via email: <strong>testemail@gmail.com</strong>
             </p>
 
             <div class="alert alert-info">
-                This is a static contact page (no form submission) as requested—simple, clean, and linkable from the navbar.
+                This is an about page
             </div>
         </div>
     </div>
